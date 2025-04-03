@@ -57,3 +57,38 @@ be retrieved from the master node by running the command:
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
+## Helm
+
+### Installation
+
+In older versions of Helm (v2), there was a server-side component called Tiller
+that needed to be installed in the cluster. Helm v3, which is the current
+version, is client-only. This means you only need to install the helm CLI on
+the machine where you will be running Helm commands.   
+
+You can install helm by running the command:
+
+```shell
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod +x get_helm.sh
+./get_helm.sh
+```
+
+### Adding Helm chart repositories
+
+A common helm chart repository is bitnami. You can add it like this:
+
+```shell
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+```
+
+## Prefect
+
+Add the Prefect Helm repository to Helm and list available charts and versions:
+
+```shell
+helm repo add prefect https://prefecthq.github.io/prefect-helm
+helm repo update
+helm search repo prefect
+```
